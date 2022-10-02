@@ -5,8 +5,17 @@
         <a routerLink="/">OShop Store</a>
       </li>
       <li class="m-3">
-        <a routerLink="/shopping-card">shop
-          <span class="badge rounded-pill bg-warning" *ngIf="card$|async as card">{{card.totalItemCount}}</span>
+        <a routerLink="/shopping-card"
+          ><i
+            class="fa fa-lg me-1 fa-shopping-cart"
+            style="color: black"
+            aria-hidden="true"
+          ></i>
+          <span
+            class="badge rounded-pill bg-warning"
+            *ngIf="card$ | async as card"
+            >{{ card.totalItemCount }}</span
+          >
         </a>
       </li>
     </ul>
