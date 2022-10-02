@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import '~bootstrap/scss/bootstrap';
+@import "ag-grid-community/dist/styles/ag-grid.css";
+@import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+
+html, body { height: 100%; }
+body { margin:0 16px; font-family: Roboto, "Helvetica Neue", sans-serif; }

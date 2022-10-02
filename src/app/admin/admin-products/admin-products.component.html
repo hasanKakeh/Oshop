@@ -1,0 +1,65 @@
+<button mat-raised-button color="primary" (click)="openProductForm()">
+  New Product
+</button>
+<div class="m-4" fxLayoutAlign="center center">
+  <mat-form-field fxFlex="100%">
+    <input
+      matInput
+      floatLabel="none"
+      type="text"
+      [formControl]="filterTxt"
+      placeholder="Search"
+    />
+  </mat-form-field>
+</div>
+
+<ag-grid-angular
+  style="width: 100%; height: 140px"
+  class="ag-theme-alpine"
+  [rowBuffer]="0"
+  [columnDefs]="columnDefs"
+  [frameworkComponents]="frameworkComponents"
+  (gridReady)="onGridReady($event)"
+  rowModelType="infinite"
+  [cacheBlockSize]="3"
+>
+</ag-grid-angular>
+
+
+<ngb-pagination
+
+aria-label
+  [collectionSize]="collectionSize"
+  [pageSize]="pageSize"
+  [(page)]="page"
+  [directionLinks]="false"
+  (pageChange)="onPageChange()"
+></ngb-pagination>
+
+<!-- 
+<table mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.title }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+    <td mat-cell *matCellDef="let element">{{ element.price| currency: "USD"  }}</td>
+  </ng-container>
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+    <td mat-cell *matCellDef="let element"><a [routerLink]="element.uid">Edit</a></td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<mat-paginator
+  [length]="100"
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  aria-label="Select page"
+>
+</mat-paginator> -->

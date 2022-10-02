@@ -1,0 +1,83 @@
+<form  [formGroup]="form" (ngSubmit)="submit(form)">
+  <div class="row">
+    <div class="col col-6">
+      <div class="from-group">
+        <label for="title" class="h5"> Title </label>
+        <input
+          formControlName="title"
+          id="title"
+          type="text"
+          class="form-control"
+        />
+      </div>
+      <div *ngIf="form.get('title').invalid && (form.get('title').dirty || form.get('title').touched)" class="alert alert-danger">
+        Field must not be empty.
+      </div>
+      <div class="from-group mt-4">
+        <label for="price" class="h5"> Price </label>
+        <div class="input-group">
+          <span class="input-group-text">$</span>
+          <input
+            formControlName="price"
+            id="price"
+            type="number"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div *ngIf="form.get('price').invalid && (form.get('price').dirty || form.get('price').touched) " class="alert alert-danger">
+        Field must not be empty.
+      </div>
+      <div class="from-group mt-4">
+        <label for="category" class="h5"> Category </label>
+        <select formControlName="category" id="category" class="form-select">
+          <option [ngValue]=""></option>
+          <option
+            *ngFor="let category of categories$ | async"
+            [ngValue]="category.key"
+          >
+            {{ category.data.name }}
+          </option>
+        </select>
+      </div>
+      <div *ngIf="form.get('category').invalid && (form.get('category').dirty || form.get('category').touched)" class="alert alert-danger">
+        Field must not be empty.
+      </div>
+      <div class="from-group mt-4">
+        <label for="image" class="h5"> Image URL </label>
+        <input
+          formControlName="imageURL"
+          id="image"
+          type="text"
+          class="form-control"
+        />
+      </div>
+      <div *ngIf="form.get('imageURL').invalid && (form.get('imageURL').dirty || form.get('imageURL').touched)" class="alert alert-danger">
+        Field must not be empty.
+      </div>
+    </div>
+    <div class="col col-6">
+      <product-card [product]="form.value" [showAction]="false"></product-card>
+    </div>
+  </div>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid"
+    type="submit"
+    class="mt-4 me-2"
+  >
+    save
+  </button>
+  <button
+    *ngIf="id"
+    mat-raised-button
+    color="warn"
+    [disabled]="form.invalid"
+    type="button"
+    class="mt-4"
+    (click)="onDelete()"
+  >
+    Delete
+  </button>
+</form>

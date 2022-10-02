@@ -1,0 +1,4 @@
+<button mat-raised-button color="primary" (click)="onGetPost()">get post</button>
+<div *ngFor="let item of post|async">
+{{item|json}}
+</div>

@@ -1,0 +1,55 @@
+<p class="h1 mt-3">Shopping Card</p>
+<ng-container *ngIf="card$">
+  <p>you have {{ card$.totalItemCount || 0 }} items in your shopping card</p>
+  <div>
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <img
+            style="width: 80px; height: 80px"
+            [src]="element.product.imageURL"
+            *ngIf="element.product.imageURL"
+            class="rounded-circle"
+            [alt]="element.product.title"
+          />
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Product</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.product.title }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <td mat-cell *matCellDef="let element">
+          <div style="margin-left: 32px; margin-right: 32px">
+            <quantity-box
+              [product]="element.product"
+              [shoppingCard]="card$"
+            ></quantity-box>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.totalPrice | currency: "USD" }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <p class="h6 mt-3">
+      Total price is : {{ totalPrice || 0 | currency: "USD" }}
+    </p>
+    <button *ngIf="dataSource.data.length" mat-raised-button color="primary" (click)="checkOut()">
+      Check Out
+    </button>
+    <button *ngIf="dataSource.data.length" mat-raised-button color="warn" (click)="clearCard()">
+      Clear Shopping Card
+    </button>
+  </div>
+</ng-container>

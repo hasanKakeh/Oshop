@@ -1,0 +1,49 @@
+<mat-toolbar class="appnavbar">
+  <div fxFlex fxLayout="row" fxLayoutAlign="flex-start" fxHide.xs>
+    <ul fxLayout="row" class="m-2">
+      <li class="m-3">
+        <a routerLink="/">OShop Store</a>
+      </li>
+      <li class="m-3">
+        <a routerLink="/shopping-card">shop
+          <span class="badge rounded-pill bg-warning" *ngIf="card$|async as card">{{card.totalItemCount}}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="m-5" fxFlex fxLayoutAlign="flex-end flex-end">
+    <a *ngIf="!appUser" routerLink="/login">Login</a>
+    <div *ngIf="appUser" ngbDropdown class="dropdown show">
+      <a
+        ngbDropdownToggle
+        class="btn dropdown-toggle"
+        id="dropdownMenuLink"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        {{ appUser.name }}
+      </a>
+      <div
+        ngbDropdownMenu
+        class="dropdown-menu"
+        aria-labelledby="dropdownMenuLink"
+      >
+        <a class="dropdown-item" routerLink="/my-order">My Order</a>
+        <a
+          *ngIf="appUser.isAdmin"
+          class="dropdown-item"
+          routerLink="/admin/orders"
+          >Manage Orders</a
+        >
+        <a
+          *ngIf="appUser.isAdmin"
+          class="dropdown-item"
+          routerLink="/admin/products"
+          >Manage Products</a
+        >
+        <a class="dropdown-item" (click)="logout()">Log out</a>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
