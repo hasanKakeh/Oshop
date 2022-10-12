@@ -1,11 +1,16 @@
 <div class="row">
-  <div class="col-3 ">
-  <product-filter [category$]="category$"></product-filter>
+  <div class="col-sm-3 col-9 mb-4">
+    <product-filter [category$]="category$"></product-filter>
   </div>
-  <div class="col">
-    <div class="row row-cols-2">
-      <div class="col mb-4 " *ngFor="let product of filterProduct$">
-       <product-card [product]="product" [shoppingCard]="card$"[showAction]="true"></product-card>
+  <div class="col-sm-9">
+    <div fxFlex="'row'" fxFlex.sm="column">
+      <div class="d-inline-block mb-4" *ngFor="let product of filterProduct$">
+        <product-card
+          class=""
+          [product]="product"
+          [shoppingCard]="card$"
+          [showAction]="true"
+        ></product-card>
       </div>
     </div>
   </div>
