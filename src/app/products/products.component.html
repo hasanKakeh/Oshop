@@ -3,7 +3,7 @@
     <product-filter [category$]="category$"></product-filter>
   </div>
   <div class="col-sm-9">
-    <div fxFlex="'row'" fxFlex.sm="column">
+    <div fxFlex="'row'" fxLayoutGap="3rem" fxFlex.sm="column">
       <div class="d-inline-block mb-4" *ngFor="let product of filterProduct$">
         <product-card
           class=""
